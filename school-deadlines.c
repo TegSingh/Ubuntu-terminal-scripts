@@ -16,6 +16,7 @@ struct datetime
     int day;
     int hours;
     int minutes;
+    char timestring[50];
 };
 
 struct action_item
@@ -27,16 +28,21 @@ struct action_item
     struct datetime added_at;
 };
 
+struct action_item action_items[50];
+
+// Add item to the array of structures
 void add_item()
 {
     printf("Add deadline called\n");
 }
 
+// Delete item from the array of structures
 void delete_item()
 {
     printf("Delete deadline called\n");
 }
 
+// Sort the array of structures by due time
 void sort_by_due_time()
 {
     printf("Sort by due time called\n");
@@ -44,7 +50,6 @@ void sort_by_due_time()
 
 int find_value_in_array(int arr[], int value)
 {
-    printf("Find value in array method called\n");
     int i = 0;
     while (arr[i] != NULL)
     {
@@ -53,7 +58,6 @@ int find_value_in_array(int arr[], int value)
         else
             i++;
     }
-
     return -1;
 }
 
@@ -76,9 +80,14 @@ int validate_day(int day, int month, int year)
 int main()
 {
     struct action_item *action_item;
-    struct datetime *deadline;
-    char item[50], type[50];
+    char item[50], type[50], course_name[50];
     int year, month, day, hours, minutes;
+    char duetimestring[50];
+    int year_current, month_current, day_current, hours_current, minutes_current;
+    char currenttimestring[50];
+
+    printf("Time is %02d:%02d am\n", hours_current, minutes_current);
+    printf("Date is: %02d/%02d/%d\n", day_current, month_current, year_current);
 
     // Get inputs
     printf("Enter Action Item name: ");
@@ -86,6 +95,9 @@ int main()
 
     printf("Enter Action Item type: ");
     gets(type);
+
+    printf("Enter Action Item Course Name: ");
+    gets(course_name);
 
     printf("Enter deadline information: \n");
     printf("Enter year: ");
@@ -102,25 +114,62 @@ int main()
     scanf("%d", &day);
     if (validate_day(day, month, year) == -1)
     {
-        printf("Enter a valid date for the month\n");
+        printf("Enter a valid date for the month:\n");
     }
 
     printf("Enter hours: ");
     scanf("%d", &hours);
     if (hours > 23 || hours < 0)
     {
-        printf("Enter a valid value for hours\n");
+        printf("Enter a valid value for hours:\n");
     }
 
     printf("Enter minutes: ");
     scanf("%d", &minutes);
     if (minutes > 59 || minutes < 0)
     {
-        printf("Enter a valid value for minutes\n");
+        printf("Enter a valid value for minutes:\n");
     }
+    // Store the deadline time in a string
+    sprintf(duetimestring, "%d-%d-%d %d:%d", year, month, day, hours, minutes);
 
-    struct datetime deadline0 = {year, month, day, hours, minutes};
-    deadline = &deadline0;
+    struct datetime deadline0 = {
+        year,
+        month,
+        day,
+        hours,
+        minutes,
+        duetimestring};
+
+    // Get current time and store in a datetime struct
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    year_current = local->tm_year + 1900;
+    month_current = local->tm_mon + 1;
+    day_current = local->tm_mday;
+    hours_current = local->tm_hour;
+    minutes_current = local->tm_min;
+
+    // Store the current time in a string
+    sprintf(currenttimestring, "%d-%d-%d %d:%d", year_current, month_current, day_current, hours_current, minutes_current);
+
+    struct datetime current0 = {
+        year_current,
+        month_current,
+        day_current,
+        hours_current,
+        minutes_current,
+        currenttimestring};
+
+    struct action_item action_item0 = {
+        item,
+        type,
+        course_name,
+        &deadline0,
+        &current0};
+
+    action_item = &action_item0;
 
     return 0;
 }
