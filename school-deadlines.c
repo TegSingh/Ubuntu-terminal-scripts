@@ -24,28 +24,65 @@ struct action_item
     char item[50];
     char type[50];
     char course_name[50];
-    struct datetime due_at;
-    struct datetime added_at;
+    char due_at[50];
+    char added_at[50];
 };
-
-struct action_item action_items[50];
-
-// Add item to the array of structures
-void add_item()
-{
-    printf("Add deadline called\n");
-}
-
-// Delete item from the array of structures
-void delete_item()
-{
-    printf("Delete deadline called\n");
-}
 
 // Sort the array of structures by due time
 void sort_by_due_time()
 {
     printf("Sort by due time called\n");
+}
+
+// Add item to the array of structures
+void add_item(struct action_item *action_item)
+{
+    printf("Add deadline called\n");
+
+    printf("Item: %s\n", action_item->item);
+    printf("Type: %s\n", action_item->type);
+    printf("Course Name: %s\n", action_item->course_name);
+    printf("Course Name: %s\n", action_item->due_at);
+    printf("Course Name: %s\n", action_item->added_at);
+
+    // open the file to store the data
+    FILE *fptr;
+    fptr = fopen("Task-list.txt", "a");
+    if (fptr == NULL)
+    {
+        printf("ERROR OPENING FILE\n");
+        return -1;
+    }
+    fprintf(fptr, "Name: %s Type: %s Course Name: %s Deadline: %s Added: %s\n", action_item->item, action_item->type, action_item->course_name, action_item->due_at, action_item->added_at);
+}
+
+// Delete item from the array of structures
+void delete_item()
+{
+    printf("Delete deadlines called\n");
+
+    // open the file to write the data
+    FILE *fptr;
+    fptr = fopen("Task-list.txt", "r");
+    if (fptr == NULL)
+    {
+        printf("ERROR OPENING FILE\n");
+        return -1;
+    }
+    fclose(fptr);
+}
+
+void show_list()
+{
+    printf("Show Items called\n");
+    FILE *fptr;
+    fptr = fopen("Task-list.txt", "r");
+    if (fptr == NULL)
+    {
+        printf("ERROR OPENING FILE\n");
+        return -1;
+    }
+    fclose(fptr);
 }
 
 int find_value_in_array(int arr[], int value)
@@ -79,25 +116,20 @@ int validate_day(int day, int month, int year)
 
 int main()
 {
-    struct action_item *action_item;
-    char item[50], type[50], course_name[50];
-    int year, month, day, hours, minutes;
-    char duetimestring[50];
-    int year_current, month_current, day_current, hours_current, minutes_current;
-    char currenttimestring[50];
 
-    printf("Time is %02d:%02d am\n", hours_current, minutes_current);
-    printf("Date is: %02d/%02d/%d\n", day_current, month_current, year_current);
+    struct action_item ai;
+    int year, month, day, hours, minutes;
+    int year_current, month_current, day_current, hours_current, minutes_current;
 
     // Get inputs
     printf("Enter Action Item name: ");
-    gets(item);
+    gets(ai.item);
 
     printf("Enter Action Item type: ");
-    gets(type);
+    gets(ai.type);
 
     printf("Enter Action Item Course Name: ");
-    gets(course_name);
+    gets(ai.course_name);
 
     printf("Enter deadline information: \n");
     printf("Enter year: ");
@@ -130,16 +162,9 @@ int main()
     {
         printf("Enter a valid value for minutes:\n");
     }
-    // Store the deadline time in a string
-    sprintf(duetimestring, "%d-%d-%d %d:%d", year, month, day, hours, minutes);
 
-    struct datetime deadline0 = {
-        year,
-        month,
-        day,
-        hours,
-        minutes,
-        duetimestring};
+    // Store the deadline time in a string
+    sprintf(ai.due_at, "%d-%d-%d %d:%d", year, month, day, hours, minutes);
 
     // Get current time and store in a datetime struct
     time_t now;
@@ -152,24 +177,16 @@ int main()
     minutes_current = local->tm_min;
 
     // Store the current time in a string
-    sprintf(currenttimestring, "%d-%d-%d %d:%d", year_current, month_current, day_current, hours_current, minutes_current);
+    sprintf(ai.added_at, "%d-%d-%d %d:%d", year_current, month_current, day_current, hours_current, minutes_current);
 
-    struct datetime current0 = {
-        year_current,
-        month_current,
-        day_current,
-        hours_current,
-        minutes_current,
-        currenttimestring};
+    printf("Item: %s\n", ai.item);
+    printf("Type: %s\n", ai.type);
+    printf("Course Name: %s\n", ai.course_name);
+    printf("Deadline: %s\n", ai.due_at);
+    printf("Added at: %s\n", ai.added_at);
 
-    struct action_item action_item0 = {
-        item,
-        type,
-        course_name,
-        &deadline0,
-        &current0};
-
-    action_item = &action_item0;
+    add_item(&ai);
+    printf("List updated\n");
 
     return 0;
 }
