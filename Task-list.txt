@@ -1,1 +1,15 @@
 Name: Assignment 1 Type: Coursework Course Name: Design and analysis of IoT systems Deadline: 2021-10-10 23:59 Added: 2021-10-2 17:46
+Name: Lab 1 Type: Coursework Course Name: Mobile App Development Deadline: 2021-10-5 23:59 Added: 2021-10-2 22:8
+Name: Assignment 1 Type: Coursework Course Name: Mobile App Development Deadline: 2021-10-14 23:59 Added: 2021-10-2 22:9
+Name: Project Proposal Type: Project Course Name: Mobile App Development Deadline: 2021-10-10 23:59 Added: 2021-10-2 22:11
+Name: Assignment 1 Type: Coursework Course Name: Embedded Systems Deadline: 2021-10-19 23:59 Added: 2021-10-2 22:13
+Name: Assignment 1 Type: Coursework Course Name: Distributed Systems Deadline: 2021-10-18 23:59 Added: 2021-10-2 22:14
+Name: Project proposal Type: Project Course Name: Distributed Systems Deadline: 2021-10-15 23:59 Added: 2021-10-2 22:14
+Name: Lab 2 Type: Coursework Course Name: Distributed Systems Deadline: 2021-10-8 23:59 Added: 2021-10-2 22:15
+Name: Progress Report Type: Capstone Course Name: Capstone Design Project Deadline: 2021-10-21 23:59 Added: 2021-10-2 22:17
+Name: Midterm 1 Type: Midterm Course Name: Distributed Systems Deadline: 2021-10-21 9:40 Added: 2021-10-2 22:21
+Name: Midterm  Type: Midterm Course Name: Embedded Systems Deadline: 2021-10-20 9:40 Added: 2021-10-2 22:22
+Name: Midterm  Type: Midterm Course Name: Mobile App Development Deadline: 2021-10-22 2:10 Added: 2021-10-2 22:22
+Name: Quiz 1 Type: Quiz Course Name: Embedded Systems Deadline: 2021-10-6 9:40 Added: 2021-10-2 22:23
+Name: Individual Activity Log 2 Type: Capstone Course Name: Capstone Design project Deadline: 2021-10-7 23:59 Added: 2021-10-2 22:25
+Name: Individual Activity Log 3 Type: Capstone Course Name: Capstone Design Project Deadline: 2021-10-21 23:59 Added: 2021-10-2 22:25

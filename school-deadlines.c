@@ -179,12 +179,6 @@ int main()
     // Store the current time in a string
     sprintf(ai.added_at, "%d-%d-%d %d:%d", year_current, month_current, day_current, hours_current, minutes_current);
 
-    printf("Item: %s\n", ai.item);
-    printf("Type: %s\n", ai.type);
-    printf("Course Name: %s\n", ai.course_name);
-    printf("Deadline: %s\n", ai.due_at);
-    printf("Added at: %s\n", ai.added_at);
-
     add_item(&ai);
     printf("List updated\n");
 
